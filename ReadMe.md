@@ -2,6 +2,6 @@
 
 PowerShell Utilities which can be used in [Windows Terminal](https://github.com/microsoft/terminal)
 
-## cmdlets
+## Functions
 
 -  Set-WTBackgroundImage
