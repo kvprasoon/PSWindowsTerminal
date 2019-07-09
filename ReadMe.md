@@ -8,4 +8,4 @@ PowerShell Utilities which can be used in [Windows Terminal](https://github.com/
 
 ### In a glance
 
-[](https://github.com/kvprasoon/PSWindowsTerminal/Demo.gif)
+![](https://i.imgur.com/cs7nEqm.gif)
