@@ -15,6 +15,9 @@ Function Set-WTBackgroundImage {
     if($CurrentAppConfig.BackgroundImage){
         $CurrentAppConfig.BackgroundImage = $ImagePath
     }
+    else{
+        $CurrentAppConfig | Add-Member -MemberType NoteProperty -Name backgroundImage -Value $ImagePath -Force
+    }
 
     $Config | ConvertTo-Json -Depth 99 | Out-File -FilePath $ProfilePath -Force -Encoding utf8
 }
