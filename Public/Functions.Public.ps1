@@ -1,4 +1,5 @@
-Function Set-WTBackgroud {
+Function Set-WTBackgroundImage {
+    [Alias("wtimg")]
     Param(
         [string]$ProfilePath = "$env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal*\RoamingState\profiles.json",
 
