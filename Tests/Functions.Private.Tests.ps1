@@ -22,23 +22,20 @@ Describe "Unit tests for private functions" -Tag "UnitTest" {
         }
     }
 
-    Context "Tests for Get-WindowsTerminalLocation function" {
-        it "Gets the WindowsTerminal InstallLocation" {
-            $InstallLocation = 'TestDrive:\'
-            Mock Get-AppxPAckage -MockWith { [PSCustomObject]@{InstallLocation = $InstallLocation } }
-            Get-WindowsTerminalLocation | Should -Be $InstallLocation
-        }
-
-        it "Throw error WindowsTerminal is not installed" {
-            $ExpectedMessage = $Script.Exceptions.WTNotFound -f 'Microsoft.WindowsTerminal'
-            Mock Get-AppxPAckage -MockWith { $null }
-            { Get-WindowsTerminalLocation } | Should -Throw -ExpectedMessage $ExpectedMessage
-        }
-    }
     Context "Tests for Get-CurrentAppConfig function" {
         BeforeAll {
             $ProfilePath = 'TestDrive:\Profile.json'
         }
+        it "Gets the WindowsTerminal Configuration" {
+            $ExpectedConfig = [PSCustomObject]@{
+                Profiles = @(@{
+                        backgroundImage = 'TestDrive:\Image.gif'
+                    })
+            }
+            Mock Get-Content -MockWith { $ExpectedConfig | ConvertTo-Json }
+            Get-CurrentAppConfig -ProfilePath $ProfilePath | Should -Not -BeNullOrEmpty
+        }
+
         it "Throws error when Get-Content throws exception" {
             $ErrorMessage = "Some Error"
             Mock Get-Content -MockWith { Throw $ErrorMessage }
