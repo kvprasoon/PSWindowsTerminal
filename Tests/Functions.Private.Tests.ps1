@@ -49,7 +49,7 @@ Describe "Unit tests for private functions" -Tag "UnitTest" {
             Get-CurrentAppConfig -ProfilePath $ProfilePath | Should -Not -BeNullOrEmpty
         }
 
-        it "Throws error when Get-Content throws" {
+        it "Throws error when Get-Content throws exception" {
             $ErrorMessage = "Some Error"
             Mock Get-Content -MockWith { Throw $ErrorMessage }
             { Get-CurrentAppConfig -ProfilePath $ProfilePath } | Should -Throw -ExpectedMessage $ErrorMessage
