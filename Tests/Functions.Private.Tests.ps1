@@ -39,16 +39,6 @@ Describe "Unit tests for private functions" -Tag "UnitTest" {
         BeforeAll {
             $ProfilePath = 'TestDrive:\Profile.json'
         }
-        it "Gets the WindowsTerminal Configuration" {
-            $ExpectedConfig = [PSCustomObject]@{
-                Profiles = @(@{
-                        backgroundImage = 'TestDrive:\Image.gif'
-                    })
-            }
-            Mock Get-Content -MockWith { $ExpectedConfig | ConvertTo-Json }
-            Get-CurrentAppConfig -ProfilePath $ProfilePath | Should -Not -BeNullOrEmpty
-        }
-
         it "Throws error when Get-Content throws exception" {
             $ErrorMessage = "Some Error"
             Mock Get-Content -MockWith { Throw $ErrorMessage }
