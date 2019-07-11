@@ -9,17 +9,6 @@ Function CheckPath {
     }
 }
 
-Function Get-WindowsTerminalLocation {
-    Param(
-        [string]$WTAppName = 'Microsoft.WindowsTerminal'
-    )
-    $Terminal = Get-AppxPackage -Name $WTAppName
-    if ($Null -ne $Terminal) {
-        return $Terminal.InstallLocation
-    }
-    Throw ($Script:ExceptionList.WTNotFound -f $WTAppName)
-}
-
 Function Get-CurrentAppConfig {
     Param(
         [Parameter(Mandatory)]

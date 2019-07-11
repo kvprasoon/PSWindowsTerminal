@@ -3,5 +3,6 @@ Get-ChildItem -Path $PSScriptRoot\Public,$PSScriptRoot\Private | ForEach-Object 
 }
 
 $Script:ExceptionList = Import-PowerShellDataFile -Path $PSScriptRoot\Configs\Exceptions.psd1
+$Script:CommonConfig = Import-PowerShellDatafile -Path  $PSScriptRoot\Configs\CommonConfig.psd1
 
 Export-ModuleMember -Function * -Alias *
