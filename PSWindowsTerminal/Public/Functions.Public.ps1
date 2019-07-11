@@ -1,17 +1,16 @@
 Function Set-WTBackgroundImage {
     [Alias("wtimg")]
     Param(
-        [string]$ProfilePath = "$env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal*\RoamingState\profiles.json",
-
         [Parameter(Mandatory)]
         [string]$ImagePath
     )
 
-    CheckPath -Path $ImagePath
-
+    $ProfilePath = WindowsTerminalLocation
     $CurrentExec = [System.IO.Path]::GetFileNameWithoutExtension([Environment]::GetCommandLineArgs())
-    $Config      = Get-Content -Path $ProfilePath -Raw | ConvertFrom-Json
+    CheckPath -Path $ImagePath
+    $Config = Get-CurrentAppConfig
     $CurrentAppConfig = $Config.Profiles | Where-Object -FilterScript {[System.IO.Path]::GetFileNameWithoutExtension($_.CommandLine) -eq $CurrentExec }
+
     if($CurrentAppConfig.BackgroundImage){
         $CurrentAppConfig.BackgroundImage = $ImagePath
     }

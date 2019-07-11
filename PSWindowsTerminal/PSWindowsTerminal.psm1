@@ -2,6 +2,6 @@ Get-ChildItem -Path $PSScriptRoot\Public,$PSScriptRoot\Private | ForEach-Object 
     . $_.FullName
 }
 
-$ExceptionList = Import-PowerShellDataFile -Path $PSScriptRoot\Configs\Exceptions.psd1
+$Script:ExceptionList = Import-PowerShellDataFile -Path $PSScriptRoot\Configs\Exceptions.psd1
 
 Export-ModuleMember -Function * -Alias *
