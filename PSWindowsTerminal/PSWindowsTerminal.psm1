@@ -1,3 +1,4 @@
+#load private and public functions
 Get-ChildItem -Path $PSScriptRoot\Public,$PSScriptRoot\Private | ForEach-Object -Process {
     . $_.FullName
 }
